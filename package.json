@@ -1,0 +1,52 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "format": "npx prettier --write . --ignore-path .gitignore",
+    "lint": "next lint -- --ignore-path .gitignore",
+    "lint:fix": "npm run format && npm run lint -- --fix",
+    "start": "next start",
+    "type-check": "tsc --noEmit"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "@next/font": "^13.1.1",
+    "@portabletext/react": "^2.0.0",
+    "@sanity/demo": "^1.0.1",
+    "@sanity/image-url": "^1.0.1",
+    "@sanity/vision": "^3.2.1",
+    "@tailwindcss/typography": "^0.5.9",
+    "@vercel/og": "^0.0.21",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "intl-segmenter-polyfill": "^0.4.4",
+    "next": "^13.1.1",
+    "next-google-fonts": "^2.2.0",
+    "next-sanity": "^4.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "sanity": "^3.2.1",
+    "sanity-plugin-asset-source-unsplash": "^1.0.6",
+    "server-only": "^0.0.1",
+    "styled-components": "^5.3.6",
+    "suspend-react": "^0.0.9"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.29.0",
+    "eslint-config-next": "13.0.6",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "postcss": "^8.4.19",
+    "prettier": "^2.8.1",
+    "prettier-plugin-packagejson": "^2.3.0",
+    "prettier-plugin-tailwindcss": "^0.2.0",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3"
+  }
+}
