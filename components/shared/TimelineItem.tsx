@@ -1,6 +1,6 @@
+import { vercelStegaSplit } from '@vercel/stega'
 import ImageBox from 'components/shared/ImageBox'
 import type { MilestoneItem } from 'types'
-import { vercelStegaSplit } from '@vercel/stega'
 
 export function TimelineItem({
   isLast,

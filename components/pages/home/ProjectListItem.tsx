@@ -1,5 +1,5 @@
-import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { vercelStegaSplit } from '@vercel/stega'
+import { CustomPortableText } from 'components/shared/CustomPortableText'
 import ImageBox from 'components/shared/ImageBox'
 import type { ShowcaseProject } from 'types'
 
