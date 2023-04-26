@@ -1,5 +1,5 @@
-import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { vercelStegaSplit } from '@vercel/stega'
+import { CustomPortableText } from 'components/shared/CustomPortableText'
 
 interface HeaderProps {
   centered?: boolean

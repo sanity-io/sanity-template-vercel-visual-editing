@@ -100,12 +100,3 @@ export const getServerSideProps: GetServerSideProps<
     },
   }
 }
-
-export const getStaticPaths = async () => {
-  const paths = await getProjectPaths()
-
-  return {
-    paths: paths?.map((slug) => resolveHref('project', slug)) || [],
-    fallback: false,
-  }
-}
