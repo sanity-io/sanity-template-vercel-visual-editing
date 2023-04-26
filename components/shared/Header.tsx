@@ -1,4 +1,5 @@
 import { CustomPortableText } from 'components/shared/CustomPortableText'
+import { vercelStegaSplit } from '@vercel/stega'
 
 interface HeaderProps {
   centered?: boolean
@@ -10,12 +11,18 @@ export function Header(props: HeaderProps) {
   if (!description && !title) {
     return null
   }
+  const { cleaned: cleanedTitle, encoded: encodedTitle } = vercelStegaSplit(
+    title || ''
+  )
   return (
     <div className={`${centered ? 'text-center' : 'w-5/6 lg:w-3/5'}`}>
       {/* Title */}
-      {title && (
+      {cleanedTitle && (
         <div className="text-3xl font-extrabold tracking-tight md:text-5xl">
-          {title}
+          {cleanedTitle}
+          {encodedTitle && (
+            <span style={{ display: 'none' }}>{encodedTitle}</span>
+          )}
         </div>
       )}
       {/* Description */}

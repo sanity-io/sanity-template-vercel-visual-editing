@@ -47,6 +47,15 @@ const sanityClient = (token?: string) => {
           ) {
             return false
           }
+          if (props.path.at(0) === 'duration') {
+            return false
+          }
+          switch (props.path.at(-1)) {
+            case 'href':
+            case 'listItem':
+            case 'site':
+              return false
+          }
           return props.filterDefault(props)
         },
       })
