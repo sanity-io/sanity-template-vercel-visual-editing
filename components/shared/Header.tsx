@@ -18,7 +18,10 @@ export function Header(props: HeaderProps) {
     <div className={`${centered ? 'text-center' : 'w-5/6 lg:w-3/5'}`}>
       {/* Title */}
       {cleanedTitle && (
-        <div className="text-3xl font-extrabold tracking-tight md:text-5xl">
+        <div
+          className="text-3xl font-extrabold tracking-tight md:text-5xl"
+          data-vercel-edit-target
+        >
           {cleanedTitle}
           {encodedTitle && (
             <span style={{ display: 'none' }}>{encodedTitle}</span>

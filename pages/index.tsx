@@ -2,7 +2,7 @@ import { PreviewSuspense } from '@sanity/preview-kit'
 import { HomePage } from 'components/pages/home/HomePage'
 import { PreviewWrapper } from 'components/preview/PreviewWrapper'
 import { getHomePage, getSettings } from 'lib/sanity.client'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { lazy } from 'react'
 import { HomePagePayload, SettingsPayload } from 'types'
 
@@ -51,7 +51,7 @@ const fallbackPage: HomePagePayload = {
   showcaseProjects: [],
 }
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData
