@@ -11,10 +11,8 @@ import { PreviewPane } from './PreviewPane'
 
 export const previewDocumentNode = ({
   apiVersion,
-  previewSecretId,
 }: {
   apiVersion: string
-  previewSecretId: `${string}.${string}`
 }): DefaultDocumentNodeResolver => {
   return (S, { schemaType }) => {
     if (PREVIEWABLE_DOCUMENT_TYPES.includes(schemaType)) {
@@ -24,11 +22,7 @@ export const previewDocumentNode = ({
         // Preview
         S.view
           .component((props) => (
-            <PreviewPane
-              previewSecretId={previewSecretId}
-              apiVersion={apiVersion}
-              {...props}
-            />
+            <PreviewPane apiVersion={apiVersion} {...props} />
           ))
           .title('Preview'),
       ])
