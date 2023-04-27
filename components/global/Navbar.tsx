@@ -11,7 +11,7 @@ export function Navbar({ menuItems }: NavbarProps) {
     <div className="sticky top-0 z-10 flex flex-wrap items-center gap-x-5 bg-white/80 px-4 py-4 backdrop-blur md:px-16 md:py-5 lg:px-32">
       <Link
         key="home"
-        className={`text-lg text-gray-600 hover:text-black md:text-xl`}
+        className={`text-lg font-extrabold text-black hover:text-black md:text-xl`}
         href={'/'}
       >
         Home
