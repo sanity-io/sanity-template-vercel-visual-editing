@@ -1,10 +1,12 @@
-# A Next.js Personal Website with a Native Authoring Experience<!-- omit in toc -->
+# Vercel Visual Editing Demo<!-- omit in toc -->
 
-This starter is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
+This starter is preconfigured to support Visual Editing, a new feature that enables you to make changes using Vercel's draft mode and new edit functionality. It is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
+
 It comes with a native Sanity Studio that offers features like real-time collaboration, instant side-by-side content previews, and intuitive editing.
 
 The Studio connects to Sanity Content Lake, which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more.
-You can use this starter to kick-start a personal website or learn these technologies.
+
+You can use this starter to kick-start a personal website to learn more about Visual Editing or other awesome Sanity features.
 
 [![Deploy with Vercel](https://vercel.com/button)][vercel-deploy]
 
@@ -113,6 +115,10 @@ npx vercel --prod
 ```
 
 ## Questions and Answers
+
+### How do I enable Visual Editing on my own Vercel project?
+
+If you are a Vercel and Sanity enterprise customer, you only need to .... [[@cody put the instructions here]]
 
 ### It doesn't work! Where can I get help?
 
