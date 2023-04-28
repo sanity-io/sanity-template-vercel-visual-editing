@@ -150,6 +150,7 @@ export default defineType({
             }),
           ],
         }),
+        defineField({ type: 'youtube' as any }),
       ],
     }),
   ],

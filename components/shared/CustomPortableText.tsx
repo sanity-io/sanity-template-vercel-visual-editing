@@ -2,6 +2,8 @@ import { PortableText, PortableTextComponents } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
 import ImageBox from 'components/shared/ImageBox'
 import { TimelineSection } from 'components/shared/TimelineSection'
+import getYouTubeId from 'get-youtube-id'
+import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import type { Image } from 'sanity'
 
 export function CustomPortableText({
@@ -54,6 +56,18 @@ export function CustomPortableText({
       timeline: ({ value }) => {
         const { items } = value || {}
         return <TimelineSection timelines={items} />
+      },
+      youtube: ({ value }) => {
+        const { url, title, aspectHeight, aspectWidth } = value
+        const id = getYouTubeId(url)
+        return (
+          <LiteYouTubeEmbed
+            id={id}
+            title={title}
+            aspectHeight={aspectHeight}
+            aspectWidth={aspectWidth}
+          />
+        )
       },
     },
   }

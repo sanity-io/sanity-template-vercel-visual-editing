@@ -1,4 +1,10 @@
-import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
+import {
+  apiVersion,
+  basePath,
+  dataset,
+  projectId,
+  useCdn,
+} from 'lib/sanity.api'
 import {
   homePageQuery,
   homePageTitleQuery,
@@ -21,7 +27,38 @@ import type {
  */
 const sanityClient = (token?: string) => {
   return projectId
-    ? createClient({ projectId, dataset, apiVersion, useCdn, token })
+    ? createClient({
+        projectId,
+        dataset,
+        apiVersion,
+        useCdn,
+        token,
+        studioUrl: basePath,
+        logger: console,
+        // @TODO comment out the below
+        encodeSourceMap: process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production',
+        encodeSourceMapAtPath: (props) => {
+          if (typeof props.path.at(-1) === 'number') {
+            return false
+          }
+          if (
+            props.path.at(-2) === 'marks' &&
+            typeof props.path.at(-1) === 'number'
+          ) {
+            return false
+          }
+          if (props.path.at(0) === 'duration') {
+            return false
+          }
+          switch (props.path.at(-1)) {
+            case 'href':
+            case 'listItem':
+            case 'site':
+              return false
+          }
+          return props.filterDefault(props)
+        },
+      })
     : null
 }
 

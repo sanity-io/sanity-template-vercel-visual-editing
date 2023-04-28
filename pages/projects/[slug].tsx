@@ -8,7 +8,7 @@ import {
   getSettings,
 } from 'lib/sanity.client'
 import { resolveHref } from 'lib/sanity.links'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { lazy } from 'react'
 import { ProjectPayload, SettingsPayload } from 'types'
 
@@ -69,7 +69,7 @@ export default function ProjectSlugRoute(props: PageProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData
@@ -98,14 +98,5 @@ export const getStaticProps: GetStaticProps<
       preview,
       token: previewData.token ?? null,
     },
-  }
-}
-
-export const getStaticPaths = async () => {
-  const paths = await getProjectPaths()
-
-  return {
-    paths: paths?.map((slug) => resolveHref('project', slug)) || [],
-    fallback: false,
   }
 }
