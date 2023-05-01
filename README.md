@@ -118,7 +118,7 @@ npx vercel --prod
 
 ### How do I enable Visual Editing on my own Vercel project?
 
-If you are a Vercel and Sanity enterprise customer, you only need to .... placeholder
+[Read our guide.](https://www.sanity.io/docs/vercel-visual-editing)
 
 ### It doesn't work! Where can I get help?
 
