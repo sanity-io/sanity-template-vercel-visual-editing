@@ -1,6 +1,10 @@
 # Vercel Visual Editing Demo<!-- omit in toc -->
 
-This starter is preconfigured to support Visual Editing, a new feature that enables you to make changes using Vercel's draft mode and new edit functionality. It is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
+> **Note**
+>
+> [Vercel Visual Editing][visual-editing] is an opt-in feature for Enterprise customers of both Sanity and Vercel. If you are an existing enterprise customer, [contact our sales team](https://www.sanity.io/contact/sales) to have Visual Editing enabled on your project. [Learn more about Sanity for Enterprise organizations here.](https://www.sanity.io/enterprise)
+
+This starter is preconfigured to support [Visual Editing][visual-editing-intro], a new feature that enables you to make changes using Vercel's draft mode and new edit functionality. It is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
 
 It comes with a native Sanity Studio that offers features like real-time collaboration, instant side-by-side content previews, and intuitive editing.
 
@@ -10,24 +14,12 @@ You can use this starter to kick-start a personal website to learn more about Vi
 
 [![Deploy with Vercel](https://vercel.com/button)][vercel-deploy]
 
-> **Note**
->
-> This starter uses the `/pages` directory for Next.js routing.
->
-> The template will be migrated to the currently experimental [/app][app-dir] directory
-> when Vercel announce that it is production ready.
->
-> If you want to use the app directory for routing today, use the [personal website with app directory](https://github.com/sanity-io/sanity-template-nextjs-appdir-personal-website)
-> template.
-
 ## Features
 
 - A performant, static personal personal website with editable projects
 - A native and customizable authoring environment, accessible on `yourpersonalwebsite.com/studio`
 - Real-time and collaborative content editing with fine-grained revision history
-- Side-by-side instant content preview that works across your whole site
 - Support for block content and the most advanced custom fields capability in the industry
-- Webhook-triggered Incremental Static Revalidation; no need to wait for a rebuild to publish new content
 - Free Sanity project with unlimited admin users, free content updates, and pay-as-you-go for API overages
 - A project with starter-friendly and not too heavy-handed TypeScript and Tailwind.css
 
@@ -49,7 +41,7 @@ You can use this starter to kick-start a personal website to learn more about Vi
 
 ## Project Overview
 
-| [Personal Website](https://nextjs-personal-website.sanity.build)                                                          | [Studio](https://nextjs-personal-website.sanity.build/studio)                                                          |
+| [Personal Website](https://template-vercel-visual-editing.sanity.build)                                                          | [Studio](https://template-vercel-visual-editing.sanity.build/studio)                                                          |
 | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ![Personal Website](https://user-images.githubusercontent.com/6951139/206395107-e58a796d-13a9-400a-94b6-31cb5df054ab.png) | ![Sanity Studio](https://user-images.githubusercontent.com/6951139/206395521-8a5f103d-4a0c-4da8-aff5-d2a1961fb2c0.png) |
 
@@ -60,11 +52,9 @@ You can use this starter to kick-start a personal website to learn more about Vi
 | `sanity.config.ts`                          | Config file for Sanity Studio                           |
 | `sanity.cli.ts`                             | Config file for Sanity CLI                              |
 | `/pages/studio/[[...index]]/page.tsx`       | Where Sanity Studio is mounted                          |
-| `/pages/api/preview.ts`                     | Serverless route for triggering Preview mode            |
 | `/schemas`                                  | Where Sanity Studio gets its content types from         |
 | `/plugins`                                  | Where the advanced Sanity Studio customization is setup |
 | `/lib/sanity.api.ts`,`/lib/sanity.image.ts` | Configuration for the Sanity Content Lake client        |
-| `/lib/sanity.preview.ts`                    | Configuration for the live Preview Mode                 |
 
 ## Configuration
 
@@ -140,7 +130,7 @@ the `/intro-template` directory.
 - [How to query content?][sanity-groq]
 - [What is content modelling?][sanity-content-modelling]
 
-[vercel-deploy]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsanity-io%2Ftemplate-nextjs-personal-website&project-name=personal-website-nextjs-sanity&repository-name=personal-website-nextjs-sanity&demo-title=Personal%20Website%20with%20Built-in%20Content%20Editing&demo-description=A%20Sanity-powered%20personal%20website%20with%20built-in%20content%20editing%20and%20instant%20previews.&demo-url=https%3A%2F%2Fnextjs-personal-website.sanity.build%2F&demo-image=https%3A%2F%2Fuser-images.githubusercontent.com%2F6951139%2F206395107-e58a796d-13a9-400a-94b6-31cb5df054ab.png&integration-ids=oac_hb2LITYajhRQ0i4QznmKH7gx&external-id=nextjs;template=nextjs-personal-website-cms-sanity-v3
+[vercel-deploy]: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsanity-io%2Fsanity-template-vercel-visual-editing&project-name=sanity-template-vercel-visual-editing&repository-name=sanity-template-vercel-visual-editing&demo-title=Personal%20Website%20with%20Built-in%20Content%20Editing&demo-description=A%20Sanity-powered%20personal%20website%20with%20built-in%20content%20editing%20and%20instant%20previews.&demo-url=https%3A%2F%2Ftemplate-vercel-visual-editing.sanity.build%2F&demo-image=https%3A%2F%2Fuser-images.githubusercontent.com%2F6951139%2F206395107-e58a796d-13a9-400a-94b6-31cb5df054ab.png&integration-ids=oac_hb2LITYajhRQ0i4QznmKH7gx&external-id=nextjs;template=sanity-template-vercel-visual-editing
 [integration]: https://www.sanity.io/docs/vercel-integration?utm_source=github.com&utm_medium=referral&utm_campaign=nextjs-v3vercelstarter
 [`.env.local.example`]: .env.local.example
 [nextjs]: https://github.com/vercel/next.js
@@ -158,3 +148,5 @@ the `/intro-template` directory.
 [vercel]: https://vercel.com
 [vercel-github]: https://github.com/vercel/next.js/discussions
 [app-dir]: https://beta.nextjs.org/docs/routing/fundamentals#the-app-directory
+[visual-editing]: https://www.sanity.io/docs/vercel-visual-editing
+[visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel
