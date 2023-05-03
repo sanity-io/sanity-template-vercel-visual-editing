@@ -35,7 +35,6 @@ const sanityClient = (token?: string) => {
         token,
         studioUrl: basePath,
         logger: console,
-        // @TODO comment out the below
         encodeSourceMap: process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production',
         encodeSourceMapAtPath: (props) => {
           if (typeof props.path.at(-1) === 'number') {
