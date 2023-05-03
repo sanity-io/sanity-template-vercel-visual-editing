@@ -41,13 +41,13 @@ export default memo(function IntroTemplate() {
 
   return (
     <div className="flex justify-center border-t border-gray-100 bg-gray-50/50">
-      <div className="grid grid-cols-1 mt-20 mb-4 max-w-screen-2xl gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32 ">
+      <div className="mb-4 mt-20 grid max-w-screen-2xl grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32 ">
         <div className="self-center">
           <Image
             alt="An illustration of a browser window, a terminal window, the Sanity.io logo and the NextJS logo"
             src={cover}
           />
-          <div className="hidden mt-10 text-xs text-gray-700 px-14 md:block">
+          <div className="mt-10 hidden px-14 text-xs text-gray-700 md:block">
             <RemoveBlock url={removeBlockURL} />
           </div>
         </div>
@@ -59,7 +59,7 @@ export default memo(function IntroTemplate() {
 
           {!hasEnvFile && (
             <div
-              className="p-4 mb-6 text-sm text-yellow-700 bg-yellow-100 rounded-lg"
+              className="mb-6 rounded-lg bg-yellow-100 p-4 text-sm text-yellow-700"
               role="alert"
             >
               {`It looks like you haven't set up the local environment variables.`}
@@ -83,14 +83,14 @@ export default memo(function IntroTemplate() {
               circleTitle="1"
               element={
                 <div>
-                  <div className="col-span-2 mt-1 mb-2 font-semibold">
+                  <div className="col-span-2 mb-2 mt-1 font-semibold">
                     Create a schema
                   </div>
 
                   {isLocalHost ? (
                     <div className="text-xs text-gray-700">
                       Start editing your content structure in
-                      <div className="px-2 bg-slate-200 w-fit">
+                      <div className="bg-slate-200 w-fit px-2">
                         <pre>sanity.config.ts</pre>
                       </div>
                     </div>
@@ -110,7 +110,7 @@ export default memo(function IntroTemplate() {
 
                       <div className="mt-3">
                         <a
-                          className="inline-flex px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-800"
+                          className="inline-flex rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-800"
                           href={repoURL}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -128,7 +128,7 @@ export default memo(function IntroTemplate() {
               circleTitle="2"
               element={
                 <div>
-                  <div className="col-span-2 mt-1 mb-2 font-semibold">
+                  <div className="col-span-2 mb-2 mt-1 font-semibold">
                     Create content with Sanity Studio
                   </div>
                   <div className="text-xs text-gray-700">
@@ -143,7 +143,7 @@ export default memo(function IntroTemplate() {
 
                   <div className="mt-3">
                     <Link
-                      className="inline-flex px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-800"
+                      className="inline-flex rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-800"
                       href={studioURL}
                     >
                       Go to Sanity Studio
@@ -157,7 +157,7 @@ export default memo(function IntroTemplate() {
               circleTitle="3"
               element={
                 <div>
-                  <div className="col-span-2 mt-1 mb-3 font-semibold">
+                  <div className="col-span-2 mb-3 mt-1 font-semibold">
                     Learn more and get help
                   </div>
                   <ul>
@@ -184,7 +184,7 @@ export default memo(function IntroTemplate() {
               }
             />
           </ol>
-          <div className="text-xs text-center text-gray-700 md:invisible">
+          <div className="text-center text-xs text-gray-700 md:invisible">
             <RemoveBlock url={removeBlockURL} />
           </div>
         </div>
@@ -201,9 +201,9 @@ function Box({
   element: JSX.Element
 }) {
   return (
-    <li className="grid grid-flow-col grid-rows-1 gap-3 mt-2 place-content-start">
+    <li className="mt-2 grid grid-flow-col grid-rows-1 place-content-start gap-3">
       <div className="row-span-3 select-none">
-        <div className="relative flex items-center justify-center w-5 h-5 p-3 text-center bg-gray-200 rounded-full select-none">
+        <div className="relative flex h-5 w-5 select-none items-center justify-center rounded-full bg-gray-200 p-3 text-center">
           {circleTitle}
         </div>
       </div>
