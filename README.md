@@ -2,7 +2,7 @@
 
 > **Note**
 >
-> [Vercel Visual Editing][visual-editing] is an opt-in feature for Enterprise customers of both Sanity and Vercel. If you are an existing enterprise customer, [contact our sales team](https://www.sanity.io/contact/sales) to have Visual Editing enabled on your project. [Learn more about Sanity for Enterprise organizations here.](https://www.sanity.io/enterprise)
+> [Vercel Visual Editing][visual-editing] is an opt-in feature for Enterprise customers of both Sanity and Vercel. If you are an existing enterprise customer, [contact our sales team][sales-cta] to have Visual Editing enabled on your project. [Learn more about Sanity for Enterprise organizations here.][enterprise-cta]
 
 This starter is preconfigured to support [Visual Editing][visual-editing-intro], a new feature that enables you to make changes using Vercel's draft mode and new edit functionality. It is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
 
@@ -41,7 +41,7 @@ You can use this starter to kick-start a personal website to learn more about Vi
 
 ## Project Overview
 
-| [Personal Website](https://template-vercel-visual-editing.sanity.build)                                                          | [Studio](https://template-vercel-visual-editing.sanity.build/studio)                                                          |
+| [Personal Website](https://template-vercel-visual-editing.sanity.build)                                                   | [Studio](https://template-vercel-visual-editing.sanity.build/studio)                                                   |
 | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ![Personal Website](https://user-images.githubusercontent.com/6951139/206395107-e58a796d-13a9-400a-94b6-31cb5df054ab.png) | ![Sanity Studio](https://user-images.githubusercontent.com/6951139/206395521-8a5f103d-4a0c-4da8-aff5-d2a1961fb2c0.png) |
 
@@ -108,7 +108,7 @@ npx vercel --prod
 
 ### How do I enable Visual Editing on my own Vercel project?
 
-[Read our guide.](https://www.sanity.io/docs/vercel-visual-editing)
+[Read our guide.][visual-editing]
 
 ### It doesn't work! Where can I get help?
 
@@ -148,5 +148,7 @@ the `/intro-template` directory.
 [vercel]: https://vercel.com
 [vercel-github]: https://github.com/vercel/next.js/discussions
 [app-dir]: https://beta.nextjs.org/docs/routing/fundamentals#the-app-directory
-[visual-editing]: https://www.sanity.io/docs/vercel-visual-editing
-[visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel
+[visual-editing]: https://www.sanity.io/docs/vercel-visual-editing?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[sales-cta]: https://www.sanity.io/contact/sales?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[enterprise-cta]: https://www.sanity.io/enterprise?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
