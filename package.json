@@ -37,7 +37,7 @@
     "styled-components": "5.3.11"
   },
   "devDependencies": {
-    "@types/react": "18.2.6",
+    "@types/react": "18.2.9",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.39.0",
     "eslint-config-next": "13.3.5-canary.6",
