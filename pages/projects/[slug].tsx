@@ -1,61 +1,39 @@
-import { PreviewSuspense } from '@sanity/preview-kit'
 import { ProjectPage } from 'components/pages/project/ProjectPage'
-import { PreviewWrapper } from 'components/preview/PreviewWrapper'
-import {
-  getHomePageTitle,
-  getProjectBySlug,
-  getProjectPaths,
-  getSettings,
-} from 'lib/sanity.client'
+import ProjectPreview from 'components/pages/project/ProjectPreview'
+import { readToken } from 'lib/sanity.api'
+import { getClient } from 'lib/sanity.client'
 import { resolveHref } from 'lib/sanity.links'
-import { GetServerSideProps } from 'next'
-import { lazy } from 'react'
+import {
+  homePageTitleQuery,
+  projectBySlugQuery,
+  projectPaths,
+  settingsQuery,
+} from 'lib/sanity.queries'
+import { GetStaticProps } from 'next'
 import { ProjectPayload, SettingsPayload } from 'types'
 
-const ProjectPreview = lazy(
-  () => import('components/pages/project/ProjectPreview')
-)
+import type { SharedPageProps } from '../_app'
 
-interface PageProps {
+interface PageProps extends SharedPageProps {
   project?: ProjectPayload
   settings?: SettingsPayload
   homePageTitle?: string
-  preview: boolean
-  token: string | null
 }
 
 interface Query {
   [key: string]: string
 }
 
-interface PreviewData {
-  token?: string
-}
-
 export default function ProjectSlugRoute(props: PageProps) {
-  const { homePageTitle, settings, project, preview, token } = props
+  const { homePageTitle, settings, project, draftMode } = props
 
-  if (preview) {
+  if (draftMode) {
     return (
-      <PreviewSuspense
-        fallback={
-          <PreviewWrapper>
-            <ProjectPage
-              homePageTitle={homePageTitle}
-              project={project}
-              settings={settings}
-              preview={preview}
-            />
-          </PreviewWrapper>
-        }
-      >
-        <ProjectPreview
-          token={token}
-          project={project}
-          settings={settings}
-          homePageTitle={homePageTitle}
-        />
-      </PreviewSuspense>
+      <ProjectPreview
+        project={project}
+        settings={settings}
+        homePageTitle={homePageTitle}
+      />
     )
   }
 
@@ -64,24 +42,20 @@ export default function ProjectSlugRoute(props: PageProps) {
       homePageTitle={homePageTitle}
       project={project}
       settings={settings}
-      preview={preview}
     />
   )
 }
 
-export const getServerSideProps: GetServerSideProps<
-  PageProps,
-  Query,
-  PreviewData
-> = async (ctx) => {
-  const { preview = false, previewData = {}, params = {} } = ctx
-
-  const token = previewData.token
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { draftMode = false, params = {} } = ctx
+  const client = getClient(draftMode ? { token: readToken } : undefined)
 
   const [settings, project, homePageTitle] = await Promise.all([
-    getSettings({ token }),
-    getProjectBySlug({ token, slug: params.slug }),
-    getHomePageTitle({ token }),
+    client.fetch<SettingsPayload | null>(settingsQuery),
+    client.fetch<ProjectPayload | null>(projectBySlugQuery, {
+      slug: params.slug,
+    }),
+    client.fetch<string | null>(homePageTitleQuery),
   ])
 
   if (!project) {
@@ -93,10 +67,20 @@ export const getServerSideProps: GetServerSideProps<
   return {
     props: {
       project,
-      settings,
-      homePageTitle,
-      preview,
-      token: previewData.token ?? null,
+      settings: settings ?? {},
+      homePageTitle: homePageTitle ?? undefined,
+      draftMode,
+      token: draftMode ? readToken : null,
     },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const client = getClient()
+  const paths = await client.fetch<string[]>(projectPaths)
+
+  return {
+    paths: paths?.map((slug) => resolveHref('project', slug)) || [],
+    fallback: false,
   }
 }

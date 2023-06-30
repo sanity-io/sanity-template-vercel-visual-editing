@@ -1,8 +1,16 @@
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import 'styles/index.css'
 
-import { IBM_Plex_Mono, Inter, PT_Serif } from "next/font/google"
 import { AppProps } from 'next/app'
+import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
+import { lazy } from 'react'
+
+export interface SharedPageProps {
+  draftMode: boolean
+  token: string
+}
+
+const PreviewProvider = lazy(() => import('components/preview/PreviewProvider'))
 
 const mono = IBM_Plex_Mono({
   variable: '--font-mono',
@@ -23,7 +31,11 @@ const serif = PT_Serif({
   weight: ['400', '700'],
 })
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<SharedPageProps>) {
+  const { draftMode, token } = pageProps
   return (
     <>
       <style jsx global>
@@ -36,7 +48,13 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </style>
 
-      <Component {...pageProps} />
+      {draftMode ? (
+        <PreviewProvider token={token}>
+          <Component {...pageProps} />
+        </PreviewProvider>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </>
   )
 }

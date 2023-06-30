@@ -1,45 +1,27 @@
-import { PreviewSuspense } from '@sanity/preview-kit'
 import { HomePage } from 'components/pages/home/HomePage'
-import { PreviewWrapper } from 'components/preview/PreviewWrapper'
-import { getHomePage, getSettings } from 'lib/sanity.client'
-import { GetServerSideProps } from 'next'
-import { lazy } from 'react'
+import HomePagePreview from 'components/pages/home/HomePagePreview'
+import { readToken } from 'lib/sanity.api'
+import { getClient } from 'lib/sanity.client'
+import { homePageQuery, settingsQuery } from 'lib/sanity.queries'
+import { GetStaticProps } from 'next'
 import { HomePagePayload, SettingsPayload } from 'types'
 
-const HomePagePreview = lazy(
-  () => import('components/pages/home/HomePagePreview')
-)
+import type { SharedPageProps } from './_app'
 
-interface PageProps {
+interface PageProps extends SharedPageProps {
   page: HomePagePayload
   settings: SettingsPayload
-  preview: boolean
-  token: string | null
 }
 
 interface Query {
   [key: string]: string
 }
 
-interface PreviewData {
-  token?: string
-}
-
 export default function IndexPage(props: PageProps) {
-  const { page, settings, preview, token } = props
+  const { page, settings, draftMode } = props
 
-  if (preview) {
-    return (
-      <PreviewSuspense
-        fallback={
-          <PreviewWrapper>
-            <HomePage page={page} settings={settings} preview={preview} />
-          </PreviewWrapper>
-        }
-      >
-        <HomePagePreview token={token} />
-      </PreviewSuspense>
-    )
+  if (draftMode) {
+    return <HomePagePreview page={page} settings={settings} />
   }
 
   return <HomePage page={page} settings={settings} />
@@ -51,25 +33,21 @@ const fallbackPage: HomePagePayload = {
   showcaseProjects: [],
 }
 
-export const getServerSideProps: GetServerSideProps<
-  PageProps,
-  Query,
-  PreviewData
-> = async (ctx) => {
-  const { preview = false, previewData = {} } = ctx
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { draftMode = false } = ctx
+  const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const token = previewData.token
-  const [settings, page = fallbackPage] = await Promise.all([
-    getSettings({ token }),
-    getHomePage({ token }),
+  const [settings, page] = await Promise.all([
+    client.fetch<SettingsPayload | null>(settingsQuery),
+    client.fetch<HomePagePayload | null>(homePageQuery),
   ])
 
   return {
     props: {
-      page,
-      settings,
-      preview,
-      token: previewData.token ?? null,
+      page: page ?? fallbackPage,
+      settings: settings ?? {},
+      draftMode,
+      token: draftMode ? readToken : null,
     },
   }
 }
