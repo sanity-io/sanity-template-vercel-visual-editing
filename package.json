@@ -15,7 +15,6 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@next/font": "13.4.7",
     "@portabletext/react": "3.0.4",
     "@sanity/client": "6.1.5",
     "@sanity/demo": "1.0.2",
