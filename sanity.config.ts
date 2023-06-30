@@ -3,7 +3,14 @@
  */
 
 import { visionTool } from '@sanity/vision'
-import { apiVersion, basePath, dataset, projectId } from 'lib/sanity.api'
+import {
+  apiVersion,
+  basePath,
+  dataset,
+  previewSecretId,
+  projectId,
+} from 'lib/sanity.api'
+import { productionUrl } from 'plugins/productionUrl'
 import { pageStructure, singletonPlugin } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
@@ -18,6 +25,12 @@ import home from 'schemas/singletons/home'
 import settings from 'schemas/singletons/settings'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE
+
+export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
+  home.name,
+  page.name,
+  project.name,
+]
 
 export default defineConfig({
   basePath,
@@ -51,5 +64,11 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    // Add the "Open preview" action
+    productionUrl({
+      apiVersion,
+      previewSecretId,
+      types: PREVIEWABLE_DOCUMENT_TYPES,
+    }),
   ],
 })
