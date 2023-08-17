@@ -24,7 +24,7 @@
     "@vercel/og": "0.5.11",
     "classnames": "2.3.2",
     "date-fns": "2.30.0",
-    "get-youtube-id": "^1.0.1",
+    "get-youtube-id": "1.0.1",
     "intl-segmenter-polyfill": "0.4.4",
     "next": "13.4.17",
     "next-google-fonts": "2.2.0",
@@ -32,22 +32,22 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
-    "react-lite-youtube-embed": "^2.3.52",
+    "react-lite-youtube-embed": "2.3.52",
     "sanity": "3.15.1",
     "sanity-plugin-asset-source-unsplash": "1.1.0",
     "styled-components": "5.3.11"
   },
   "devDependencies": {
     "@types/react": "18.2.20",
-    "autoprefixer": "^10.4.15",
-    "eslint": "^8.47.0",
+    "autoprefixer": "10.4.15",
+    "eslint": "8.47.0",
     "eslint-config-next": "13.4.17",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "postcss": "^8.4.28",
-    "prettier": "^3.0.2",
-    "prettier-plugin-packagejson": "^2.4.5",
-    "prettier-plugin-tailwindcss": "^0.5.3",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "postcss": "8.4.28",
+    "prettier": "3.0.2",
+    "prettier-plugin-packagejson": "2.4.5",
+    "prettier-plugin-tailwindcss": "0.5.3",
     "tailwindcss": "3.3.3",
-    "typescript": "^5.1.6"
+    "typescript": "5.1.6"
   }
 }
