@@ -75,6 +75,6 @@ export const getStaticPaths = async () => {
 
   return {
     paths: paths?.map((slug) => resolveHref('page', slug)) || [],
-    fallback: false,
+    fallback: true, // check if slug created since last build
   }
 }
