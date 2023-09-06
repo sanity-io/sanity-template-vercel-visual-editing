@@ -61,6 +61,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   if (!project) {
     return {
       notFound: true,
+      revalidate: 1, // nonexistant slug might be created later
     }
   }
 
