@@ -55,6 +55,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   if (!page) {
     return {
       notFound: true,
+      revalidate: 1, // nonexistant slug might be created later
     }
   }
 
@@ -66,6 +67,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       draftMode,
       token: draftMode ? readToken : null,
     },
+    revalidate: 10,
   }
 }
 
@@ -75,6 +77,6 @@ export const getStaticPaths = async () => {
 
   return {
     paths: paths?.map((slug) => resolveHref('page', slug)) || [],
-    fallback: false,
+    fallback: true, // check if slug created since last build
   }
 }
