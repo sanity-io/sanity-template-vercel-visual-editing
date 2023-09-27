@@ -11,6 +11,7 @@ export interface SharedPageProps {
 }
 
 const PreviewProvider = lazy(() => import('components/preview/PreviewProvider'))
+const SanityVisualEditing = lazy(() => import('components/preview/SanityVisualEditing'))
 
 const mono = IBM_Plex_Mono({
   variable: '--font-mono',
@@ -55,6 +56,10 @@ export default function App({
       ) : (
         <Component {...pageProps} />
       )}
+
+      {process.env.NEXT_PUBLIC_SANITY_VISUAL_EDITING === 'true' ? (
+        <SanityVisualEditing />
+      ) : null}
     </>
   )
 }
