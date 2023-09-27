@@ -11,7 +11,9 @@ export interface SharedPageProps {
 }
 
 const PreviewProvider = lazy(() => import('components/preview/PreviewProvider'))
-const SanityVisualEditing = lazy(() => import('components/preview/SanityVisualEditing'))
+const SanityVisualEditing = lazy(
+  () => import('components/preview/SanityVisualEditing'),
+)
 
 const mono = IBM_Plex_Mono({
   variable: '--font-mono',
