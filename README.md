@@ -1,5 +1,7 @@
 # Vercel Visual Editing Demo<!-- omit in toc -->
 
+## [Live demo](https://sanity-template-vercel-visual-editing-git-preview.sanity.build/)
+
 > **Note**
 >
 > [Vercel Visual Editing][visual-editing] is an opt-in feature for Enterprise customers of both Sanity and Vercel. If you are an existing enterprise customer, [contact our sales team][sales-cta] to have Visual Editing enabled on your project. [Learn more about Sanity for Enterprise organizations here.][enterprise-cta]
