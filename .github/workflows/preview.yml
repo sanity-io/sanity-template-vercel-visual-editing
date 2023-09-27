@@ -1,11 +1,20 @@
 ---
 name: Sync main to preview
+
 on:
   push:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
-  sync-staging:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
