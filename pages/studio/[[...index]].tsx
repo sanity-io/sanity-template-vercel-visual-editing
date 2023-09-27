@@ -11,7 +11,14 @@ export default function StudioPage() {
           <meta key={key} name={key} content={value} />
         ))}
       </Head>
-      <NextStudio config={config} unstable_globalStyles />
+      <NextStudio
+        config={config}
+        unstable_globalStyles
+        // This prop is for demo purposes on the deployment hosted by Sanity, you can safely delete it
+        unstable_noAuthBoundary={
+          process.env.NEXT_PUBLIC_UNSTABLE_NOAUTHBOUNDARY === 'true'
+        }
+      />
     </>
   )
 }
