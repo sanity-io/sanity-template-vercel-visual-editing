@@ -34,7 +34,7 @@
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
     "react-lite-youtube-embed": "2.3.52",
-    "sanity": "3.18.1",
+    "sanity": "3.18.2-pink-lizard.21",
     "sanity-plugin-asset-source-unsplash": "1.1.1",
     "styled-components": "5.3.11"
   },
