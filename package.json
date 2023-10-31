@@ -36,7 +36,7 @@
     "react-lite-youtube-embed": "2.3.52",
     "sanity": "3.19.0",
     "sanity-plugin-asset-source-unsplash": "1.1.2",
-    "styled-components": "5.3.11"
+    "styled-components": "6.1.0"
   },
   "devDependencies": {
     "@types/react": "18.2.33",
