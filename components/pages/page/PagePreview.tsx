@@ -1,5 +1,5 @@
+import { useQuery } from 'lib/sanity.loader'
 import { pagesBySlugQuery } from 'lib/sanity.queries'
-import { useLiveQuery } from 'next-sanity/preview'
 import type { PagePayload } from 'types'
 
 import { Page, PageProps } from './Page'
@@ -9,13 +9,20 @@ export default function PagePreview({
   settings,
   homePageTitle,
 }: PageProps) {
-  const [page] = useLiveQuery<PagePayload | null>(
-    initialPage,
+  const {
+    data: page,
+    error,
+    loading,
+  } = useQuery<PagePayload | null>(
     pagesBySlugQuery,
     {
       slug: initialPage.slug,
     },
+    { initialData: initialPage },
   )
+
+  if (error) throw error
+  if (loading && !page) return <div className="text-center">Loading...</div>
 
   return (
     <Page

@@ -7,13 +7,9 @@ import { lazy } from 'react'
 
 export interface SharedPageProps {
   draftMode: boolean
-  token: string
 }
 
-const PreviewProvider = lazy(() => import('components/preview/PreviewProvider'))
-const SanityVisualEditing = lazy(
-  () => import('components/preview/SanityVisualEditing'),
-)
+const VisualEditing = lazy(() => import('components/VisualEditing'))
 
 const mono = IBM_Plex_Mono({
   variable: '--font-mono',
@@ -38,7 +34,7 @@ export default function App({
   Component,
   pageProps,
 }: AppProps<SharedPageProps>) {
-  const { draftMode, token } = pageProps
+  const { draftMode } = pageProps
   return (
     <>
       <style jsx global>
@@ -51,17 +47,9 @@ export default function App({
         `}
       </style>
 
-      {draftMode ? (
-        <PreviewProvider token={token}>
-          <Component {...pageProps} />
-        </PreviewProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
+      <Component {...pageProps} />
 
-      {process.env.NEXT_PUBLIC_SANITY_VISUAL_EDITING === 'true' ? (
-        <SanityVisualEditing />
-      ) : null}
+      {draftMode ? <VisualEditing /> : null}
     </>
   )
 }

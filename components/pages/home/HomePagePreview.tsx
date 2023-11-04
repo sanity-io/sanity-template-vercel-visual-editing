@@ -1,17 +1,35 @@
-import { homePageQuery } from 'lib/sanity.queries'
-import { useLiveQuery } from 'next-sanity/preview'
-import type { HomePagePayload } from 'types'
+import { useQuery } from 'lib/sanity.loader'
+import { homePageQuery, settingsQuery } from 'lib/sanity.queries'
+import type { HomePagePayload, SettingsPayload } from 'types'
 
 import { HomePage, HomePageProps } from './HomePage'
 
 export default function HomePagePreview({
-  page: initialPage,
-  settings,
+  page: initialData,
+  settings: initialSettings,
 }: HomePageProps) {
-  const [page] = useLiveQuery<HomePagePayload | null>(
-    initialPage,
-    homePageQuery,
+  const {
+    data: page,
+    loading: pageLoading,
+    error: pageError,
+  } = useQuery<HomePagePayload | null>(homePageQuery, {}, { initialData })
+  const {
+    data: settings,
+    loading: settingsLoading,
+    error: settingsError,
+  } = useQuery<typeof initialSettings>(
+    settingsQuery,
+    {},
+    { initialData: initialSettings },
   )
+
+  const error = pageError || settingsError
+  if (error) throw error
+
+  const loading = pageLoading || settingsLoading
+  if (loading && !page) {
+    return <div className="text-center">Loading...</div>
+  }
 
   if (!page) {
     return (

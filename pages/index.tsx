@@ -1,7 +1,6 @@
 import { HomePage } from 'components/pages/home/HomePage'
 import HomePagePreview from 'components/pages/home/HomePagePreview'
-import { readToken } from 'lib/sanity.api'
-import { getClient } from 'lib/sanity.client'
+import { query } from 'lib/sanity.loader'
 import { homePageQuery, settingsQuery } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { HomePagePayload, SettingsPayload } from 'types'
@@ -35,19 +34,17 @@ const fallbackPage: HomePagePayload = {
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false } = ctx
-  const client = getClient(draftMode ? { token: readToken } : undefined)
 
   const [settings, page] = await Promise.all([
-    client.fetch<SettingsPayload | null>(settingsQuery),
-    client.fetch<HomePagePayload | null>(homePageQuery),
+    query<SettingsPayload | null>(settingsQuery),
+    query<HomePagePayload | null>(homePageQuery),
   ])
 
   return {
     props: {
-      page: page ?? fallbackPage,
-      settings: settings ?? {},
+      page: page?.data ?? fallbackPage,
+      settings: settings?.data ?? {},
       draftMode,
-      token: draftMode ? readToken : null,
-    },
+    } satisfies PageProps,
   }
 }

@@ -2,15 +2,9 @@
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
+import { presentationTool } from '@sanity/presentation'
 import { visionTool } from '@sanity/vision'
-import {
-  apiVersion,
-  basePath,
-  dataset,
-  previewSecretId,
-  projectId,
-} from 'lib/sanity.api'
-import { productionUrl } from 'plugins/productionUrl'
+import { apiVersion, basePath, dataset, projectId } from 'lib/sanity.api'
 import { pageStructure, singletonPlugin } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
@@ -26,17 +20,16 @@ import settings from 'schemas/singletons/settings'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE
 
-export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
-  home.name,
-  page.name,
-  project.name,
-]
-
 export default defineConfig({
   basePath,
   projectId: projectId || '',
   dataset: dataset || '',
   title,
+  document: {
+    unstable_comments: {
+      enabled: true,
+    },
+  },
   schema: {
     // If you want more content types, you can add them to this array
     types: [
@@ -54,6 +47,14 @@ export default defineConfig({
     ],
   },
   plugins: [
+    presentationTool({
+      previewUrl: new URL(
+        '/api/draft',
+        typeof document === 'undefined'
+          ? 'http://localhost:3000'
+          : location.origin,
+      ).toString(),
+    }),
     deskTool({
       structure: pageStructure([home, settings]),
     }),
@@ -64,11 +65,5 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
-    // Add the "Open preview" action
-    productionUrl({
-      apiVersion,
-      previewSecretId,
-      types: PREVIEWABLE_DOCUMENT_TYPES,
-    }),
   ],
 })

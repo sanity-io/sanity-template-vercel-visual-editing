@@ -1,5 +1,5 @@
+import { useQuery } from 'lib/sanity.loader'
 import { projectBySlugQuery } from 'lib/sanity.queries'
-import { useLiveQuery } from 'next-sanity/preview'
 import type { ProjectPayload } from 'types'
 
 import { ProjectPage, ProjectPageProps } from './ProjectPage'
@@ -9,13 +9,20 @@ export default function ProjectPreview({
   project: initialProject,
   homePageTitle,
 }: ProjectPageProps) {
-  const [project] = useLiveQuery<ProjectPayload | null>(
-    initialProject,
+  const {
+    data: project,
+    error,
+    loading,
+  } = useQuery<ProjectPayload | null>(
     projectBySlugQuery,
     {
       slug: initialProject.slug,
     },
+    { initialData: initialProject },
   )
+
+  if (error) throw error
+  if (loading && !project) return <div className="text-center">Loading...</div>
 
   return (
     <ProjectPage
