@@ -5,10 +5,10 @@
 // Whereas the Sanity version is always on when our special env var is set.
 // TL;DR you don't need this file, it's only here as graceful fallback on the live demo deployment.
 
-import { enableVisualEditing } from '@sanity/overlays'
+import { enableOverlays } from '@sanity/overlays'
 import { useEffect } from 'react'
 
 export default function SanityVisualEditing() {
-  useEffect(enableVisualEditing, [])
+  useEffect(enableOverlays, [])
   return null
 }
