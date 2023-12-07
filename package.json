@@ -29,7 +29,7 @@
     "intl-segmenter-polyfill": "0.4.4",
     "next": "14.0.3",
     "next-google-fonts": "2.2.0",
-    "next-sanity": "5.5.11",
+    "next-sanity": "7.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
