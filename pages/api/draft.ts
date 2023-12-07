@@ -1,3 +1,4 @@
+import { createClient } from '@sanity/client'
 import {
   apiVersion,
   dataset,
@@ -8,7 +9,6 @@ import {
 } from 'lib/sanity.api'
 import { resolveHref } from 'lib/sanity.links'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createClient } from 'next-sanity'
 import { getSecret } from 'plugins/productionUrl/utils'
 
 function redirectToPreview(
