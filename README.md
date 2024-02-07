@@ -4,7 +4,7 @@
 
 > **Note**
 >
-> [Vercel Visual Editing][visual-editing] is an opt-in feature for Enterprise customers of both Sanity and Vercel. If you are an existing enterprise customer, [contact our sales team][sales-cta] to have Visual Editing enabled on your project. [Learn more about Sanity for Enterprise organizations here.][enterprise-cta]
+> [Vercel Visual Editing][visual-editing] is available on [Vercel's Beta on Pro and Enterprise plans][vercel-enterprise] and with all Sanity plans.
 
 This starter is preconfigured to support [Visual Editing][visual-editing-intro], a new feature that enables you to make changes using Vercel's draft mode and new edit functionality. It is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
 
@@ -154,3 +154,4 @@ the `/intro-template` directory.
 [visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [sales-cta]: https://www.sanity.io/contact/sales?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [enterprise-cta]: https://www.sanity.io/enterprise?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[vercel-enterprise]: https://vercel.com/docs/accounts/plans/enterprise
