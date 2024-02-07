@@ -4,7 +4,7 @@
 
 > **Note**
 >
-> [Vercel Visual Editing][visual-editing] is available on [Vercel's Beta on Pro and Enterprise plans][vercel-enterprise] and with all Sanity plans.
+> [Vercel Visual Editing][visual-editing] is available on [Vercel's Pro and Enterprise plans][vercel-enterprise] and with all Sanity plans.
 
 This starter is preconfigured to support [Visual Editing][visual-editing-intro], a new feature that enables you to make changes using Vercel's draft mode and new edit functionality. It is a statically generated personal website that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content.
 
