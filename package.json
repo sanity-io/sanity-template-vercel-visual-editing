@@ -21,7 +21,7 @@
     "@sanity/icons": "2.10.3",
     "@sanity/image-url": "1.0.2",
     "@sanity/preview-url-secret": "1.6.4",
-    "@sanity/vision": "3.30.0",
+    "@sanity/vision": "3.30.1",
     "@sanity/visual-editing": "1.5.2",
     "@tailwindcss/typography": "0.5.10",
     "@vercel/og": "0.5.20",
@@ -35,7 +35,7 @@
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
     "react-lite-youtube-embed": "2.4.0",
-    "sanity": "3.30.0",
+    "sanity": "3.30.1",
     "sanity-plugin-asset-source-unsplash": "1.1.2",
     "styled-components": "6.1.1"
   },
