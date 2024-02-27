@@ -1,39 +1,27 @@
-import { createClient } from '@sanity/client/stega'
-import {
-  apiVersion,
-  basePath,
-  dataset,
-  projectId,
-  useCdn,
-} from 'lib/sanity.api'
+import { apiVersion, basePath, dataset, projectId } from 'lib/sanity.api'
+import { createClient } from 'next-sanity'
 
 export function getClient(preview?: { token: string }) {
   const client = createClient({
     projectId,
     dataset,
     apiVersion,
-    useCdn,
+    useCdn: false,
     perspective: 'published',
     stega: {
-      enabled: process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview',
+      enabled:
+        process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' ||
+        typeof preview?.token === 'string',
       studioUrl: basePath,
       logger: console,
       filter: (props) => {
         if (typeof props.sourcePath.at(-1) === 'number') {
           return false
         }
-        if (
-          props.sourcePath.at(-2) === 'marks' &&
-          typeof props.sourcePath.at(-1) === 'number'
-        ) {
-          return false
-        }
         if (props.sourcePath.at(0) === 'duration') {
           return false
         }
         switch (props.sourcePath.at(-1)) {
-          case 'href':
-          case 'listItem':
           case 'site':
             return false
         }

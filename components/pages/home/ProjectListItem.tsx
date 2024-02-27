@@ -1,4 +1,3 @@
-import { vercelStegaSplit } from '@vercel/stega'
 import { CustomPortableText } from 'components/shared/CustomPortableText'
 import ImageBox from 'components/shared/ImageBox'
 import type { ShowcaseProject } from 'types'
@@ -32,18 +31,12 @@ export function ProjectListItem(props: ProjectProps) {
 }
 
 function TextBox({ project }: { project: ShowcaseProject }) {
-  const { cleaned: cleanedTitle, encoded: encodedTitle } = vercelStegaSplit(
-    project.title || '',
-  )
   return (
     <div className="relative mt-2 flex w-full flex-col justify-between p-3 xl:mt-0">
       <div>
         {/* Title */}
         <div className="mb-2 text-xl font-extrabold tracking-tight md:text-2xl">
-          {cleanedTitle}
-          {encodedTitle && (
-            <span style={{ display: 'none' }}>{encodedTitle}</span>
-          )}
+          {project.title}
         </div>
         {/* Overview  */}
         <div className="font-serif text-gray-500">

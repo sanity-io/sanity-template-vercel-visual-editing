@@ -7,13 +7,21 @@
  * https://github.com/sanity-io/next-sanity
  */
 
-import Studio from './Studio'
+import { NextStudio } from 'next-sanity/studio'
+import config from 'sanity.config'
 
 export const dynamic = 'force-static'
 
-export { metadata } from 'next-sanity/studio/metadata'
-export { viewport } from 'next-sanity/studio/viewport'
+export { metadata, viewport } from 'next-sanity/studio'
 
 export default function StudioPage() {
-  return <Studio />
+  return (
+    <NextStudio
+      config={config}
+      // This prop is for demo purposes on the deployment hosted by Sanity, you can safely delete it
+      unstable_noAuthBoundary={
+        process.env.NEXT_PUBLIC_UNSTABLE_NOAUTHBOUNDARY === 'true'
+      }
+    />
+  )
 }

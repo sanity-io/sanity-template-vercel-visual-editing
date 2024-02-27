@@ -1,9 +1,10 @@
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import 'styles/index.css'
 
+import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
 import { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
-import { lazy } from 'react'
+import { lazy, useSyncExternalStore } from 'react'
 
 export interface SharedPageProps {
   draftMode: boolean
@@ -11,9 +12,6 @@ export interface SharedPageProps {
 }
 
 const PreviewProvider = lazy(() => import('components/preview/PreviewProvider'))
-const SanityVisualEditing = lazy(
-  () => import('components/preview/SanityVisualEditing'),
-)
 
 const mono = IBM_Plex_Mono({
   variable: '--font-mono',
@@ -34,11 +32,21 @@ const serif = PT_Serif({
   weight: ['400', '700'],
 })
 
+const subscribe = () => () => {}
+
 export default function App({
   Component,
   pageProps,
 }: AppProps<SharedPageProps>) {
   const { draftMode, token } = pageProps
+  const isMaybeInsidePresentation = useSyncExternalStore(
+    subscribe,
+    () =>
+      window !== parent ||
+      !!opener ||
+      process.env.NEXT_PUBLIC_SANITY_VISUAL_EDITING === 'true',
+    () => process.env.NEXT_PUBLIC_SANITY_VISUAL_EDITING === 'true',
+  )
   return (
     <>
       <style jsx global>
@@ -59,9 +67,7 @@ export default function App({
         <Component {...pageProps} />
       )}
 
-      {process.env.NEXT_PUBLIC_SANITY_VISUAL_EDITING === 'true' ? (
-        <SanityVisualEditing />
-      ) : null}
+      {isMaybeInsidePresentation && <VisualEditing />}
     </>
   )
 }

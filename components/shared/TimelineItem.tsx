@@ -1,4 +1,3 @@
-import { vercelStegaSplit } from '@vercel/stega'
 import ImageBox from 'components/shared/ImageBox'
 import type { MilestoneItem } from 'types'
 
@@ -11,11 +10,9 @@ export function TimelineItem({
 }) {
   const { description, duration, image, tags, title } = milestone
   const startYear = duration?.start
-    ? new Date(vercelStegaSplit(duration.start).cleaned).getFullYear()
+    ? new Date(duration.start).getFullYear()
     : undefined
-  const endYear = duration?.end
-    ? new Date(vercelStegaSplit(duration.end).cleaned).getFullYear()
-    : 'Now'
+  const endYear = duration?.end ? new Date(duration.end).getFullYear() : 'Now'
 
   return (
     <div className={`flex min-h-[200px] font-sans ${!isLast && 'pb-2'}`}>
