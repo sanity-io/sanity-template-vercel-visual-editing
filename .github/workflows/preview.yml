@@ -23,7 +23,7 @@ jobs:
         with:
           app_id: ${{ secrets.ECOSPARK_APP_ID }}
           private_key: ${{ secrets.ECOSPARK_APP_PRIVATE_KEY }}
-      - uses: connor-baer/action-sync-branch@main
+      - uses: connor-baer/action-sync-branch@4f44fe844a1a3f53676699cfe74453820a38ca65 # main
         with:
           branch: preview
           token: ${{ steps.generate-token.outputs.token }}
